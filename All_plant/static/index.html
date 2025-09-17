@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌱 PlantDoc - AI Plant Disease Detection for Farmers</title>
+    
+    <!-- External Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/static/styles.css">
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="AI-powered plant disease detection for farmers. Upload plant images and get instant diagnosis with treatment recommendations.">
+    <meta name="keywords" content="plant disease, AI detection, farming, agriculture, crop health">
+    <meta name="author" content="PlantDoc AI">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PlantDoc AI - Plant Disease Detection">
+    <meta property="og:description" content="Professional AI-powered plant disease detection for farmers">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="home">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                PlantDoc AI
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#diagnose">Diagnose</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>🌱 AI-Powered Plant Disease Detection</h1>
+            <p>Help your crops stay healthy with instant AI diagnosis. Upload a photo of your plant and get expert recommendations in seconds!</p>
+        </section>
+
+        <!-- Main Application Card -->
+        <section class="main-card" id="diagnose">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h2>📸 Upload Plant Image for Diagnosis</h2>
+                <p>Take a clear photo of the affected plant leaves or stems</p>
+                
+                <div class="upload-area" role="button" tabindex="0" aria-label="Upload plant image">
+                    <i class="fas fa-cloud-upload-alt upload-icon" aria-hidden="true"></i>
+                    <div class="upload-text">Click here or drag and drop your image</div>
+                    <div class="upload-subtext">Supports JPG, PNG, JPEG • Max size: 10MB</div>
+                </div>
+                
+                <input type="file" id="imageInput" accept="image/*" aria-label="Select plant image file">
+                
+                <!-- Image Preview -->
+                <div class="preview-container" id="previewContainer">
+                    <img id="previewImage" class="preview-image" alt="Plant image preview">
+                    <div>
+                        <button class="btn" type="button" aria-label="Analyze plant disease">
+                            <i class="fas fa-microscope" aria-hidden="true"></i>
+                            Analyze Plant Disease
+                        </button>
+                        <button class="btn btn-secondary" type="button" aria-label="Clear selected image">
+                            <i class="fas fa-trash" aria-hidden="true"></i>
+                            Clear Image
+                        </button>
+                    </div>
+                </div>
+
+                <p class="accepted-plants">Accepted Plants: Tomato, Potato, Corn, Wheat, Rice, Soybean, and more!</p>
+            </div>
+
+            <!-- Error Messages -->
+            <div class="error-message" id="errorMessage" role="alert" aria-live="polite"></div>
+
+            <!-- Loading Animation -->
+            <div class="loading" id="loading" aria-live="polite">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>🔬 Analyzing your plant image...</p>
+                <p><small>Our AI is examining the leaves and identifying potential diseases</small></p>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-container" id="resultsContainer">
+                <article class="result-card">
+                    <header class="diagnosis-header">
+                        <div class="diagnosis-icon">
+                            <i class="fas fa-stethoscope" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3 class="diagnosis-title" id="diagnosisTitle">Plant Diagnosis</h3>
+                            <p class="diagnosis-subtitle" id="diagnosisSubtitle">AI Analysis Results</p>
+                        </div>
+                    </header>
+                    
+                    <div>
+                        <p><strong>Detected Condition:</strong> <span id="plantCondition">-</span></p>
+                        <p><strong>Plant Type:</strong> <span id="plantType">-</span></p>
+                        <p><strong>Confidence Level:</strong> <span id="confidenceText">-</span></p>
+                        <div class="confidence-bar" role="progressbar" aria-label="Confidence level">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                    </div>
+
+                    <section class="top-predictions">
+                        <h4>🎯 Top Possible Conditions:</h4>
+                        <div id="topPredictions"></div>
+                    </section>
+                </article>
+
+                <!-- Treatment Recommendations -->
+                <section class="treatment-recommendations">
+                    <header class="treatment-title">
+                        <i class="fas fa-prescription-bottle-alt" aria-hidden="true"></i>
+                        Treatment Recommendations
+                    </header>
+                    <ul class="treatment-list" id="treatmentList">
+                        <li><i class="fas fa-leaf" aria-hidden="true"></i>Remove affected leaves immediately to prevent spread</li>
+                        <li><i class="fas fa-tint" aria-hidden="true"></i>Adjust watering schedule - avoid overhead watering</li>
+                        <li><i class="fas fa-wind" aria-hidden="true"></i>Improve air circulation around plants</li>
+                        <li><i class="fas fa-spray-can" aria-hidden="true"></i>Apply appropriate fungicide or treatment</li>
+                        <li><i class="fas fa-user-md" aria-hidden="true"></i>Consult local agricultural extension service if symptoms persist</li>
+                    </ul>
+                </section>
+
+                <!-- Emergency Contact -->
+                <aside class="emergency-contact">
+                    <h4>🚨 Need Immediate Help?</h4>
+                    <p>Contact your local agricultural extension office or plant pathologist for severe cases</p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Information Cards -->
+        <section class="info-cards" id="about">
+            <div class="info-card">
+                <i class="fas fa-camera" aria-hidden="true"></i>
+                <h3>Take Clear Photos</h3>
+                <p>Capture close-up images of affected leaves in good lighting for accurate diagnosis</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-robot" aria-hidden="true"></i>
+                <h3>AI Analysis</h3>
+                <p>Our advanced AI model can identify 38+ different plant diseases with high accuracy</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <h3>Save Your Crops</h3>
+                <p>Early detection and treatment can save your plants and improve harvest yields</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <p>&copy; 2025 PlantDoc AI - Empowering Farmers with Technology</p>
+        <p>Built with ❤️ for agricultural communities worldwide</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/static/script.js"></script>
+    
+    <!-- Optional: Service Worker for PWA functionality -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    // Service worker registration failed, but that's OK
+                });
+            });
+        }
+    </script>
+</body>
+</html>
