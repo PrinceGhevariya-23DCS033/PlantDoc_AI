@@ -3,27 +3,30 @@ from typing import List
 
 class Config:
     """Configuration settings for the Plant Disease Classification API"""
-    
-    # Model settings
-    MODEL_PATH: str = os.getenv("MODEL_PATH", r".\saved_models\v20250917_013725")
-    H5_MODEL_PATH: str = os.getenv("H5_MODEL_PATH", r".\allplatent_balnced.h5")
-    
-    # Image preprocessing settings
-    IMAGE_SIZE: tuple = (256, 256)  # (width, height) - FIXED: Models expect 256x256, not 224x224!
-    MAX_IMAGE_SIZE: int = 10 * 1024 * 1024  # 10MB
-    
-    # API settings
+
+    # ================= MODEL SETTINGS =================
+    # Preferred: TensorFlow SavedModel directory
+    MODEL_PATH: str = os.getenv("MODEL_PATH", "./saved_model")
+
+    # Backup: H5 model file
+    H5_MODEL_PATH: str = os.getenv("H5_MODEL_PATH", "./allplatent_balnced.h5")
+
+    # ================= IMAGE SETTINGS =================
+    IMAGE_SIZE: tuple = (256, 256)  # Model expects 256x256
+    MAX_IMAGE_SIZE: int = 10 * 1024 * 1024  # 10 MB
+
+    # ================= API SETTINGS =================
     MAX_BATCH_SIZE: int = 10
     ALLOWED_EXTENSIONS: List[str] = [".jpg", ".jpeg", ".png", ".bmp", ".tiff"]
-    
-    # Server settings
+
+    # ================= SERVER SETTINGS =================
     HOST: str = os.getenv("HOST", "127.0.0.1")
     PORT: int = int(os.getenv("PORT", "8000"))
-    
-    # Logging settings
+
+    # ================= LOGGING =================
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
-    
-    # Class names for the model
+
+    # ================= CLASS LABELS =================
     CLASS_NAMES: List[str] = [
         'Apple___Apple_scab',
         'Apple___Black_rot',
@@ -65,5 +68,5 @@ class Config:
         'Tomato___healthy'
     ]
 
-# Create a global config instance
+# Global config instance
 config = Config()
