@@ -21,8 +21,8 @@ This repository contains a FastAPI-based web application for classifying plant d
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/PrinceGhevariya-23DCS033/ISL_dataset.git
-   cd ISL_dataset
+   git clone https://github.com/PrinceGhevariya-23DCS033/PlantDoc_AI.git
+   cd ALL_plant
    ```
 
 2. Create and activate a virtual environment:
